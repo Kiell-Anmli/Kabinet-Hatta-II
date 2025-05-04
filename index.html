@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kabinet Hatta II</title>
+  <style>
+    :root {
+      --bg-url: url('https://img.freepik.com/free-vector/ripped-newspaper-flower-stem-old-brown-paper-banner-vector_53876-136540.jpg?semt=ais_hybrid&w=740');
+      --bg-light: rgba(255, 255, 255, 0.95);
+      --bg-dark: rgba(34, 34, 34, 0.95);
+      --text-light: #2c3e50;
+      --text-dark: #f1f1f1;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: var(--bg-url) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body.dark .container {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto 100px;
+      background: var(--bg-light);
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .slide {
+      display: none;
+      padding: 30px;
+      animation: slideIn 0.4s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      z-index: 10;
+    }
+
+    .nav button {
+      background: #222;
+      border: none;
+      padding: 12px 18px;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav button:hover {
+      background: #444;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    h2 {
+      color: inherit;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-theme" onclick="toggleTheme()">Mode Terang/Gelap</button>
+
+  <div class="container">
+    <div class="slide active">
+      <h2>Kabinet Hatta II (4 Agustus 1949 – 20 Desember 1949)</h2>
+      <p>Kabinet Hatta II dibentuk setelah para pemimpin RI kembali dari pengasingan. Fokus utamanya adalah menyelesaikan diplomasi dengan Belanda melalui Konferensi Meja Bundar (KMB).</p>
+    </div>
+
+    <div class="slide">
+      <h2>Konferensi Meja Bundar (KMB)</h2>
+      <p>KMB berlangsung pada 23 Agustus–2 November 1949 di Den Haag. Salah satu hasilnya adalah pembentukan Republik Indonesia Serikat (RIS) yang terdiri atas beberapa negara bagian termasuk Negara Republik Indonesia.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Pembentukan RIS dan Akhir Kabinet</h2>
+      <p>Terbentuknya RIS mengakhiri masa tugas Kabinet Hatta II. Hatta diangkat sebagai Perdana Menteri RIS dan Sukarno sebagai Presiden RIS sejak 27 Desember 1949.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Kabinet Peralihan dan Akhir RIS</h2>
+      <p>Selama masa transisi, dibentuk Kabinet Susanto Tirtoprojo (20 Des 1949 – 21 Jan 1950) dan Kabinet Halim (21 Jan – 6 Sep 1950). RIS akhirnya dibubarkan pada 17 Agustus 1950 dan Indonesia kembali menjadi negara kesatuan.</p>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button onclick="changeSlide(-1)">&#8592;</button>
+    <button onclick="changeSlide(1)">&#8594;</button>
+  </div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function changeSlide(dir) {
+      slides[current].classList.remove('active');
+      current = (current + dir + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
